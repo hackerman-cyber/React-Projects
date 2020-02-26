@@ -13,10 +13,8 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar title="Github Finder" icons={["fab", "github"]} />
         <div className="container">
-          {" "}
-          <Users />
+          <Navbar title="Github Finder" icons={["fab", "github"]} /> <Users />
         </div>
       </React.Fragment>
     );
