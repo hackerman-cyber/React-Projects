@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
+import { PropTypes } from "prop-types";
 // stateless component. so better to use react func components
 
 const UserList = props => {
@@ -18,6 +19,10 @@ const UserList = props => {
       </Card.Body>
     </Card>
   );
+};
+
+UserList.propTypes = {
+  user: PropTypes.object.isRequired
 };
 
 export default UserList;
