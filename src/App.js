@@ -12,17 +12,33 @@ import axios from "axios";
 library.add(fab);
 
 class App extends React.Component {
-  componentDidMount() {
+  state = {
+    users: [],
+    loading: false
+  };
+
+  async componentDidMount() {
     console.log("MOUNTED!!!");
-    axios.get("https://api.github.com/users").then(res => {
-      console.log(res.data);
+
+    this.setState({
+      loading: true
     });
+
+    const res = await axios.get("https://api.github.com/users");
+
+    this.setState({
+      users: res.data,
+      loading: false
+    });
+
+    console.log(res.data);
   }
   render() {
     return (
       <React.Fragment>
         <div className="container">
-          <Navbar title="Github Finder" icons={["fab", "github"]} /> <Users />
+          <Navbar title="Github Finder" icons={["fab", "github"]} />
+          <Users loading={this.state.loading} users={this.state.users} />
         </div>
       </React.Fragment>
     );
