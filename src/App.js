@@ -5,17 +5,20 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 
 import Navbar from "./components/layout/Navbar";
-import UserItem from "./components/users/UserList";
+import Users from "./components/users/Users";
 
 library.add(fab);
 
 class App extends React.Component {
   render() {
     return (
-      <div className="App ">
+      <React.Fragment>
         <Navbar title="Github Finder" icons={["fab", "github"]} />
-        <UserItem />
-      </div>
+        <div className="container">
+          {" "}
+          <Users />
+        </div>
+      </React.Fragment>
     );
   }
 }
