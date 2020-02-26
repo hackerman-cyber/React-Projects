@@ -7,11 +7,12 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import Navbar from "./components/layout/Navbar";
 
 library.add(fab);
+
 class App extends React.Component {
   render() {
     return (
       <div className="App ">
-        <Navbar />
+        <Navbar title="Github Finder" icons={["fab", "github"]} />
       </div>
     );
   }
