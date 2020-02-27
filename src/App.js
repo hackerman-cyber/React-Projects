@@ -7,6 +7,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import Navbar from "./components/layout/Navbar";
 import Users from "./components/users/Users";
 import Search from "./components/users/Search";
+import Alert from "./components/layout/Alert";
 
 import axios from "axios";
 
@@ -15,7 +16,11 @@ library.add(fab);
 class App extends React.Component {
   state = {
     users: [],
-    loading: false
+    loading: false,
+    alert: {
+      val: false,
+      msg: ""
+    }
   };
 
   // async componentDidMount() {
@@ -59,15 +64,36 @@ class App extends React.Component {
     });
   };
 
+  //set alert
+  setAlert = msg => {
+    this.setState({
+      alert: {
+        val: true,
+        msg: msg
+      }
+    });
+
+    setTimeout(() => {
+      this.setState({
+        alert: {
+          val: false,
+          msg: ""
+        }
+      });
+    }, 3000);
+  };
+
   render() {
     return (
       <React.Fragment>
         <div className="container">
           <Navbar title="Github Finder" icons={["fab", "github"]} />
+          <Alert alertInfo={this.state.alert} />
           <Search
             searchUsers={this.searchUsers}
             clearUsers={this.clearUsers}
             showClear={this.state.users.length > 0 ? true : false}
+            setAlert={this.setAlert}
           />
           <Users loading={this.state.loading} users={this.state.users} />
         </div>

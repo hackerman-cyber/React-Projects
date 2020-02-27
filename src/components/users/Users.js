@@ -9,7 +9,7 @@ class Users extends Component {
       return <Spinner />;
     } else {
       return (
-        <div class="row mt-5 justify-content-center">
+        <div className="row mt-5 justify-content-center">
           {this.props.users.map(user => {
             return <UserList key={user.id} user={user} />;
           })}
