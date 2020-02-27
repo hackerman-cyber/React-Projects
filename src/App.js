@@ -11,6 +11,7 @@ import Search from "./components/users/Search";
 import Alert from "./components/layout/Alert";
 
 import axios from "axios";
+import About from "./components/layout/About";
 
 library.add(fab);
 
@@ -113,6 +114,7 @@ class App extends React.Component {
                 }}
               />
               >
+              <Route path="/about" component={About} />
             </Switch>
           </div>
         </React.Fragment>
