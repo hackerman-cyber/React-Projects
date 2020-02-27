@@ -6,8 +6,8 @@ import { PropTypes } from "prop-types";
 const UserList = props => {
   const { login, avatar_url, html_url } = props.user;
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={avatar_url} />
+    <Card style={{ width: "18rem" }} className="card-custom mx-2 mb-3">
+      <Card.Img variant="top" src={avatar_url} style={{ width: "18rem" }} />
       <Card.Body>
         <Card.Title>{login}</Card.Title>
         <Card.Text />

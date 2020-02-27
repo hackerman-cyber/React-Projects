@@ -51,9 +51,11 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar title="Github Finder" icons={["fab", "github"]} />
-        <Search searchUsers={this.searchUsers} />
-        <Users loading={this.state.loading} users={this.state.users} />
+        <div className="container">
+          <Navbar title="Github Finder" icons={["fab", "github"]} />
+          <Search searchUsers={this.searchUsers} />
+          <Users loading={this.state.loading} users={this.state.users} />
+        </div>
       </React.Fragment>
     );
   }
