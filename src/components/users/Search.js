@@ -8,7 +8,8 @@ class Search extends Component {
 
   static propTypes = {
     searchUsers: PropTypes.func.isRequired,
-    clearUsers: PropTypes.func.isRequired
+    clearUsers: PropTypes.func.isRequired,
+    showClear: PropTypes.bool.isRequired
   };
 
   onChange = e => {
@@ -41,13 +42,16 @@ class Search extends Component {
           value="search"
           className="btn btn-success btn-sm btn-block"
         />
-        <button
-          type="button"
-          className="btn btn-primary btn-sm btn-block"
-          onClick={this.props.clearUsers}
-        >
-          Clear
-        </button>
+        {this.props.showClear ? (
+          <button
+            type="button"
+            className="btn btn-primary btn-sm btn-block"
+            onClick={this.props.clearUsers}
+          >
+            {" "}
+            Clear
+          </button>
+        ) : null}
       </form>
     );
   }
