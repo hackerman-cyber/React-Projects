@@ -1,8 +1,14 @@
 import React, { Component } from "react";
+import { PropTypes } from "prop-types";
 
 class Search extends Component {
   state = {
     text: ""
+  };
+
+  static propTypes = {
+    searchUsers: PropTypes.func.isRequired,
+    clearUsers: PropTypes.func.isRequired
   };
 
   onChange = e => {
@@ -25,7 +31,7 @@ class Search extends Component {
         <input
           type="text"
           name="text"
-          className="form-control"
+          className="form-control my-2 py-2"
           placeholder="Search users..."
           value={this.state.text}
           onChange={this.onChange}
@@ -33,8 +39,15 @@ class Search extends Component {
         <input
           type="submit"
           value="search"
-          className="btn btn-success btn-block"
+          className="btn btn-success btn-sm btn-block"
         />
+        <button
+          type="button"
+          className="btn btn-primary btn-sm btn-block"
+          onClick={this.props.clearUsers}
+        >
+          Clear
+        </button>
       </form>
     );
   }

@@ -48,12 +48,19 @@ class App extends React.Component {
     });
   };
 
+  clearUsers = () => {
+    this.setState({
+      users: [],
+      loading: false
+    });
+  };
+
   render() {
     return (
       <React.Fragment>
         <div className="container">
           <Navbar title="Github Finder" icons={["fab", "github"]} />
-          <Search searchUsers={this.searchUsers} />
+          <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} />
           <Users loading={this.state.loading} users={this.state.users} />
         </div>
       </React.Fragment>
