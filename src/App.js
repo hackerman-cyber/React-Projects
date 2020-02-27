@@ -6,6 +6,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 
 import Navbar from "./components/layout/Navbar";
 import Users from "./components/users/Users";
+import Search from "./components/users/Search";
 
 import axios from "axios";
 
@@ -25,9 +26,7 @@ class App extends React.Component {
     });
 
     const res = await axios.get(
-      `https://api.github.com/users?client_id=${
-        process.env.REACT_APP_GITHUB_CLIENT_ID
-      }&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+      `https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     );
 
     this.setState({
@@ -40,10 +39,9 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="container">
-          <Navbar title="Github Finder" icons={["fab", "github"]} />
-          <Users loading={this.state.loading} users={this.state.users} />
-        </div>
+        <Navbar title="Github Finder" icons={["fab", "github"]} />
+        <Search />
+        <Users loading={this.state.loading} users={this.state.users} />
       </React.Fragment>
     );
   }
