@@ -1,14 +1,33 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PropTypes } from "prop-types";
+import { Link } from "react-router-dom";
 
 const Navbar = props => {
   return (
-    <nav className="navbar navbar-light bg-light my-2">
-      <h1>
-        <FontAwesomeIcon icon={props.icons} />
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <h3 className="navbar-brand">
+        <FontAwesomeIcon icon={props.icons} className="mx-1" />
         {props.title}
-      </h1>
+      </h3>
+
+      <div
+        className="collapse navbar-collapse justify-content-end"
+        id="navbarSupportedContent"
+      >
+        <ul className="navbar-nav">
+          <li className="nav-item active">
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
+          </li>
+          <li className="nav-item active">
+            <Link to="/about" className="nav-link">
+              About
+            </Link>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 };
