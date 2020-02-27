@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "./styles.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -85,19 +86,37 @@ class App extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <div className="container">
-          <Navbar title="Github Finder" icons={["fab", "github"]} />
-          <Alert alertInfo={this.state.alert} />
-          <Search
-            searchUsers={this.searchUsers}
-            clearUsers={this.clearUsers}
-            showClear={this.state.users.length > 0 ? true : false}
-            setAlert={this.setAlert}
-          />
-          <Users loading={this.state.loading} users={this.state.users} />
-        </div>
-      </React.Fragment>
+      <Router>
+        <React.Fragment>
+          <div className="container">
+            <Navbar title="Github Finder" icons={["fab", "github"]} />
+            <Alert alertInfo={this.state.alert} />
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={props => {
+                  return (
+                    <Fragment>
+                      <Search
+                        searchUsers={this.searchUsers}
+                        clearUsers={this.clearUsers}
+                        showClear={this.state.users.length > 0 ? true : false}
+                        setAlert={this.setAlert}
+                      />
+                      <Users
+                        loading={this.state.loading}
+                        users={this.state.users}
+                      />
+                    </Fragment>
+                  );
+                }}
+              />
+              >
+            </Switch>
+          </div>
+        </React.Fragment>
+      </Router>
     );
   }
 }
