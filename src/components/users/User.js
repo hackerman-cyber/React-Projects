@@ -14,7 +14,7 @@ class User extends Component {
     loading: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired,
     getUser: PropTypes.func.isRequired,
-    getUserRepos: PropTypes.array.isRequired
+    getUserRepos: PropTypes.func.isRequired
   };
 
   render() {
@@ -31,8 +31,6 @@ class User extends Component {
       following
     } = this.props.user;
 
-    console.log(this.props.user);
-
     if (this.props.loading) return <Spinner />;
     return (
       <Fragment>
@@ -43,7 +41,7 @@ class User extends Component {
         >
           Back to Search
         </Link>
-        <div class="card-group">
+        <div className="card-group">
           <div
             className="card-block my-2"
             style={{
@@ -87,8 +85,8 @@ class User extends Component {
               border: "0.5px solid"
             }}
           >
-            <div class="card-header">Featured Repos</div>
-            <Repos repos={this.props.repos} />
+            <div className="card-header">Featured Repos</div>
+            <Repos key={this.props.repos.id} repos={this.props.repos} />
           </div>
         </div>
       </Fragment>

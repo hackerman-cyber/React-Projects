@@ -1,11 +1,13 @@
 import React from "react";
 
 const RepoItem = props => {
-  console.log(props.repos);
   return (
     <li class="list-group-item">
       {props.repos.name}
-      <a href={props.repos.owner.html_url}> Link </a>
+      <a href={props.repos.html_url} target="_blank" rel="noopener noreferrer">
+        {" "}
+        Link{" "}
+      </a>
     </li>
   );
 };
