@@ -24,7 +24,8 @@ class App extends React.Component {
       val: false,
       msg: ""
     },
-    user: {}
+    user: {},
+    repos: []
   };
 
   // async componentDidMount() {
@@ -105,6 +106,22 @@ class App extends React.Component {
     });
   };
 
+  //get user repos
+  getUserRepos = async username => {
+    this.setState({
+      loading: true
+    });
+
+    const res = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&q=client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+
+    this.setState({
+      repos: res.data,
+      loading: false
+    });
+  };
+
   render() {
     return (
       <Router>
@@ -143,6 +160,8 @@ class App extends React.Component {
                       getUser={this.getUser}
                       user={this.state.user}
                       loading={this.state.loading}
+                      getUserRepos={this.getUserRepos}
+                      repos={this.state.repos}
                     />
                   );
                 }}
