@@ -10,6 +10,7 @@ import Users from "./components/users/Users";
 import Search from "./components/users/Search";
 import Alert from "./components/layout/Alert";
 import About from "./components/layout/About";
+import User from "./components/users/User";
 
 import axios from "axios";
 
@@ -22,7 +23,8 @@ class App extends React.Component {
     alert: {
       val: false,
       msg: ""
-    }
+    },
+    user: {}
   };
 
   // async componentDidMount() {
@@ -43,6 +45,7 @@ class App extends React.Component {
 
   //   console.log(res.data);
   // }
+
   // Passed up prop function from Search.js
   searchUsers = async text => {
     this.setState({
@@ -59,6 +62,7 @@ class App extends React.Component {
     });
   };
 
+  // clear users
   clearUsers = () => {
     this.setState({
       users: [],
@@ -83,6 +87,22 @@ class App extends React.Component {
         }
       });
     }, 3000);
+  };
+
+  // get a single Github user
+  getUser = async username => {
+    this.setState({
+      loading: true
+    });
+
+    const res = await axios.get(
+      `https://api.github.com/users/${username}?q=client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+
+    this.setState({
+      user: res.data,
+      loading: false
+    });
   };
 
   render() {
@@ -113,8 +133,20 @@ class App extends React.Component {
                   );
                 }}
               />
-              >
               <Route path="/about" component={About} />
+              <Route
+                path="/user/:login"
+                render={props => {
+                  return (
+                    <User
+                      {...props}
+                      getUser={this.getUser}
+                      user={this.state.user}
+                      loading={this.state.loading}
+                    />
+                  );
+                }}
+              />
             </Switch>
           </div>
         </React.Fragment>
