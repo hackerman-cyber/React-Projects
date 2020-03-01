@@ -17,6 +17,17 @@ import axios from "axios";
 library.add(fab);
 
 const App = () => {
+  let GCI;
+  let GCS;
+
+  if (process.env.NODE_ENV !== "production") {
+    GCI = process.env.REACT_APP_GITHUB_CLIENT_ID;
+    GCS = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
+  } else {
+    GCI = process.env.GITHUB_CLIENT_ID;
+    GCS = process.env.GITHUB_CLIENT_SECRET;
+  }
+
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState({ val: false, msg: "" });
@@ -28,7 +39,7 @@ const App = () => {
     setLoading(true);
 
     const res = await axios.get(
-      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+      `https://api.github.com/search/users?q=${text}&client_id=${GCI}&client_secret=${GCS}`
     );
 
     setUsers(res.data.items);
@@ -55,7 +66,7 @@ const App = () => {
     setLoading(true);
 
     const res = await axios.get(
-      `https://api.github.com/users/${username}?q=client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+      `https://api.github.com/users/${username}?q=client_id=${GCI}&client_secret=${GCS}`
     );
     setUser(res.data);
     setLoading(false);
