@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -7,9 +7,12 @@ import { Balance } from "./components/Balance";
 import { IncomeExp } from "./components/IncomeExp";
 import { TransactionList } from "./components/TransactionList";
 import { AddTransaction } from "./components/AddTransaction";
+
+import { GlobalProvider } from "./context/GlobalState";
+
 function App() {
   return (
-    <Fragment>
+    <GlobalProvider>
       <NavbarComp />
       <div className="container">
         <Balance />
@@ -17,7 +20,7 @@ function App() {
         <TransactionList />
         <AddTransaction />
       </div>
-    </Fragment>
+    </GlobalProvider>
   );
 }
 
