@@ -1,9 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
 
 export const AddTransaction = () => {
   // local state
   const [text, setText] = useState("");
   const [amount, setAmount] = useState("");
+  const { addTransaction } = useContext(GlobalContext);
+
+  const onSubmit = e => {
+    e.preventDefault();
+
+    addTransaction({
+      id: Math.floor(Math.random() * 1000),
+      text: text,
+      amount: +amount
+    });
+
+    setText("");
+    setAmount("");
+  };
   return (
     <div className="row justify-content-center">
       <div className="col-md-6">
@@ -11,7 +26,7 @@ export const AddTransaction = () => {
         <div className="card text-center text-light bg-dark">
           <div className="card-header">New Transaction</div>
         </div>
-        <form className="my-2">
+        <form className="my-2" onSubmit={onSubmit}>
           <div className="form-group">
             <label htmlFor="formGroupExampleInput">Expense</label>
             <input
