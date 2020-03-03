@@ -6,6 +6,9 @@ const app = express();
 // Connect DB
 connectDB();
 
+// Init middleware
+app.use(express.json());
+
 app.get("/", (req, res) => res.json({ msg: "Welcome to the contact keeper" }));
 
 // Define Routes
