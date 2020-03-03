@@ -14,8 +14,14 @@ const User = require("../models/User");
 // @route GET api/auth
 // @desc  GET the user
 // @access Private
-router.get("/", auth, (req, res) => {
-  res.send("Log in user");
+router.get("/", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    res.json(user);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server Error");
+  }
 });
 
 // @route POST api/auth
