@@ -37,18 +37,9 @@ export const Transaction = ({ transaction }) => {
                   opacity: "50%"
                 }}
                 onClick={() => {
-                  deleteTransaction(transaction.id);
+                  deleteTransaction(transaction._id);
                 }}
               />
-              {/* <button
-                className="delete-btn"
-                onClick={() => {
-                  console.log(transaction);
-                  deleteTransaction(transaction.id);
-                }}
-              >
-                x
-              </button> */}
             </li>
           </ul>
         </div>
