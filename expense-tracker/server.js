@@ -10,7 +10,7 @@ const transactions = require("./routes/transactions");
 connectDB();
 
 const app = express();
-
+app.use(express.json()); // middleware body parser
 // app.get("/", (req, res) => res.send("Hello"));
 app.use("/api/v1/transactions", transactions);
 
