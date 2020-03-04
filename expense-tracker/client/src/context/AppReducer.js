@@ -1,6 +1,6 @@
 export default (state, action) => {
   switch (action.type) {
-    case "GET_TRANSACTION":
+    case "GET_TRANSACTIONS":
       return {
         ...state,
         loading: false,
@@ -10,7 +10,7 @@ export default (state, action) => {
       return {
         ...state,
         transactions: state.transactions.filter(
-          trans => trans.id !== action.payload
+          trans => trans._id !== action.payload
         )
       };
     case "ADD_TRANSACTION":
