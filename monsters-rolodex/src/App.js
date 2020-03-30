@@ -1,29 +1,24 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      name: "Sabuj"
+      name: "Sabuj",
+      monsters: [
+        { name: "Frankenstein", id: "abc1" },
+        { name: "Dracula", id: "abc2" },
+        { name: "Courage", id: "abc3" }
+      ]
     };
   }
   render() {
     return (
-      <div>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <p> {this.state.name}</p>
-            <button onClick={() => this.setState({ name: "Jana" })}>
-              lick me
-            </button>
-          </header>
-        </div>
+      <div className="App">
+        {this.state.monsters.map(mons => (
+          <h1 key={mons.id}> {mons.name}</h1>
+        ))}
       </div>
     );
   }
